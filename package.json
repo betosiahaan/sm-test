@@ -1,0 +1,14 @@
+{
+  "name": "sinarmas",
+  "version": "1.0.0",
+  "description": "test sinarmas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "beto siahaan",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  }
+}
