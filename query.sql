@@ -46,7 +46,7 @@ CREATE OR REPLACE FUNCTION public.get_all_children_of_parent(use_parent integer)
         BEGIN
             WHILE ( array_upper( process_parents, 1 ) IS NOT NULL ) LOOP
                 new_children := ARRAY( SELECT AreaID FROM org_structure WHERE ParentAreaID = ANY( process_parents ) AND AreaID <> ALL( children ) );
-                children := children || new_children;
+                children := process_parents || children || new_children;
                 process_parents :=  new_children;
             END LOOP;
             RETURN children;
@@ -55,7 +55,7 @@ CREATE OR REPLACE FUNCTION public.get_all_children_of_parent(use_parent integer)
 LANGUAGE plpgsql VOLATILE COST 100;
 ALTER FUNCTION public.get_all_children_of_parent(integer) OWNER TO postgres;
 
-
+--query
 
 WITH RECURSIVE c AS (
    SELECT 111 AS AreaID
